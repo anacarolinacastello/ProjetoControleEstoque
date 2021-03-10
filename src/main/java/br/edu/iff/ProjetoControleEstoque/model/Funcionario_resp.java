@@ -1,22 +1,33 @@
 
 package br.edu.iff.ProjetoControleEstoque.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Funcionario_resp extends Funcionario{
     @Column(length = 10,nullable = false)
     private String usuario;
     @Column(length = 6,nullable = false)
     private int senha;
     
-
-    private List<Entrada> entradas;
-    private List<Despache> despaches;
+    @JsonBackReference
+    @OneToMany(mappedBy = "funcionario_resp")
+    private List<Entrada> entradas=new ArrayList<>();
+    @JsonBackReference
+    @OneToMany(mappedBy = "funcionario_resp")
+    private List<Despache> despaches= new ArrayList<>();
     
-
     public String getUsuario() {
         return usuario;
     }

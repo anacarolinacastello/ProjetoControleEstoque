@@ -1,12 +1,16 @@
 package br.edu.iff.ProjetoControleEstoque.model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Calendar;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,20 +24,34 @@ public class Entrada implements Serializable{
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar data_hota_e;
-    
-    private Funcionario funcionario;
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(nullable=false)
+    private Funcionario_resp funcionario_resp;
     private Produto produto;
+    @Embedded
     private Alocacao alocacao;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Funcionario_resp getFuncionario_resp() {
+        return funcionario_resp;
+    }
+
+    public void setFuncionario_resp(Funcionario_resp funcionario_resp) {
+        this.funcionario_resp = funcionario_resp;
+    }
+
+    
    
 
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
+   
     public Produto getProduto() {
         return produto;
     }
