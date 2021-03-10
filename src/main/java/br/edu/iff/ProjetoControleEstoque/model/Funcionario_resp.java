@@ -2,11 +2,14 @@
 package br.edu.iff.ProjetoControleEstoque.model;
 
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
-
+@Entity
 public class Funcionario_resp extends Funcionario{
-    
+    @Column(length = 10,nullable = false)
     private String usuario;
+    @Column(length = 6,nullable = false)
     private int senha;
     
 

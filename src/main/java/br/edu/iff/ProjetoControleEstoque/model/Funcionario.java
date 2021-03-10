@@ -1,16 +1,24 @@
 package br.edu.iff.ProjetoControleEstoque.model;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-
+@Entity
 public abstract class Funcionario implements Serializable{
     
     private static final long serialVersionUID = 1L;
-   
-
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false,length = 50)
     private String nome;
+    @Column(nullable = false,length = 100, unique = true, updatable = false)
     private String email;
+    @Column(nullable = false,length = 14, unique = true, updatable = false)
     private String cpf;
 
     public Long getId() {

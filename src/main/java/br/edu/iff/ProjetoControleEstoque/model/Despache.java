@@ -2,16 +2,29 @@ package br.edu.iff.ProjetoControleEstoque.model;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class Despache implements Serializable{
     
     private static final long serialVersionUID = 1L;
-    
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
+    private String local_de_despache;
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar data_hora_s;
+    
     private Funcionario funcionario;
     private Produto produto;
-    private String local_de_despache;
-    private Calendar data_hora_s;
 
     public Funcionario getFuncionario() {
         return funcionario;

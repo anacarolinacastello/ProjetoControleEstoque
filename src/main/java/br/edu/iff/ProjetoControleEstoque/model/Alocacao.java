@@ -1,12 +1,15 @@
 package br.edu.iff.ProjetoControleEstoque.model;
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-
+@Embeddable
 public class Alocacao implements Serializable{
     
     private static final long serialVersionUID = 1L;
-    
+    @Column(nullable = false)
     private int corredor;
+    @Column(nullable = false)
     private int estante;
 
     public int getCorredor() {
