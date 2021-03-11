@@ -1,4 +1,5 @@
 package br.edu.iff.ProjetoControleEstoque.model;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 @Entity
 public class Despache implements Serializable{
@@ -25,11 +28,12 @@ public class Despache implements Serializable{
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar data_hora_s;
-    
     @JsonManagedReference
     @ManyToOne
     @JoinColumn(nullable=false)
     private Funcionario_resp funcionario_resp;
+    @OneToOne
+    @JoinColumn(nullable=false)
     private Produto produto;
 
     public Long getId() {
@@ -97,14 +101,6 @@ public class Despache implements Serializable{
         }
         return true;
     }
-
-    
-
-    
-    
-
- 
-
 
     public Despache() {
     }

@@ -1,4 +1,5 @@
 package br.edu.iff.ProjetoControleEstoque.model;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 @Entity
 public class Entrada implements Serializable{
@@ -28,6 +31,8 @@ public class Entrada implements Serializable{
     @ManyToOne
     @JoinColumn(nullable=false)
     private Funcionario_resp funcionario_resp;
+    @OneToOne
+    @JoinColumn(nullable=false)
     private Produto produto;
     @Embedded
     private Alocacao alocacao;
@@ -47,10 +52,6 @@ public class Entrada implements Serializable{
     public void setFuncionario_resp(Funcionario_resp funcionario_resp) {
         this.funcionario_resp = funcionario_resp;
     }
-
-    
-   
-
    
     public Produto getProduto() {
         return produto;
@@ -100,8 +101,6 @@ public class Entrada implements Serializable{
         return true;
     }
    
-
-
     public Entrada() {
     }
     
